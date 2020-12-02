@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    volumes:
+    - ./:/app
+    depends_on:
+      - db
+    networks:
+      - default
+
+  db:
+    image: postgres:alpine
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5050:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
