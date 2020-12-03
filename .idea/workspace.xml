@@ -20,13 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="280d7d9a-ac69-4af3-8f72-58e1110cc8dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitingore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/repository/postgres/postgres_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/repository/postgres/postgres_user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/repository/postgres/postgres_user_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/repository/postgres/postgres_user_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/repository/user_reposiotry.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/repository/user_reposiotry.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +91,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1032" y="182" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1366.0.1366.728@0.0.1920.1040" timestamp="1606673519626" />
+    <state x="1067" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607016199575">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1067" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1366.0.1366.728@0.0.1920.1040" timestamp="1607016199575" />
     <state x="900" y="253" key="Vcs.Push.Dialog.v2" timestamp="1607010207756">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
