@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="280d7d9a-ac69-4af3-8f72-58e1110cc8dc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/repository/postgres/postgres_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/repository/postgres/postgres_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/repository/postgres/postgres_user_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/repository/postgres/postgres_user_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/repository/user_reposiotry.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/repository/user_reposiotry.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +70,20 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
@@ -58,9 +96,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1032" y="182" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1366.0.1366.728@0.0.1920.1040" timestamp="1606673519626" />
-    <state x="971" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1606750303550">
+    <state x="900" y="253" key="Vcs.Push.Dialog.v2" timestamp="1607010207756">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="971" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1366.0.1366.728@0.0.1920.1040" timestamp="1606750303550" />
+    <state x="900" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1366.0.1366.728@0.0.1920.1040" timestamp="1607010207756" />
+    <state x="971" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1607010202870">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="971" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1366.0.1366.728@0.0.1920.1040" timestamp="1607010202870" />
   </component>
 </project>

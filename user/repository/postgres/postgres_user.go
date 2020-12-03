@@ -2,9 +2,8 @@ package postgres
 
 import (
 	"database/sql"
-	"fmt"
+	"github.com/sirupsen/logrus"
 	"go-store/domain"
-	"log"
 )
 
 type postgresUserRepository struct {
@@ -15,12 +14,11 @@ func NewPostgresUserRepository(db *sql.DB) domain.UserRepository {
 	return &postgresUserRepository{db}
 }
 
-func (p postgresUserRepository) User(id uint64) (*domain.User, error) {
-	query := `SELECT id, username, password, updated_at, created_at
-  						FROM users WHERE ID = ?`
+func (p postgresUserRepository) User(id int64) (*domain.User, error) {
+	query := `SELECT id, username, password, updated_at, created_at FROM users WHERE ID = ?`
 	rows, err := p.db.Query(query, id)
 	if err != nil {
-		log.Fatal(err.Error())
+		logrus.Error(err)
 	}
 	defer rows.Close()
 
@@ -36,13 +34,12 @@ func (p postgresUserRepository) User(id uint64) (*domain.User, error) {
 		)
 
 		if err != nil {
-			log.Fatal(err)
+			logrus.Error(err)
 		}
-		log.Println(user.ID, user.Username)
 	}
 	err = rows.Err()
 	if err != nil {
-		log.Fatal(err)
+		logrus.Error(err)
 	}
 	return &user, nil
 }
@@ -51,7 +48,7 @@ func (p postgresUserRepository) Users() ([]*domain.User, error) {
 	query := `SELECT id, username, password, updated_at, created_at FROM users`
 	rows, err := p.db.Query(query)
 	if err != nil {
-		log.Fatal(err.Error())
+		logrus.Error(err)
 	}
 	defer rows.Close()
 
@@ -67,40 +64,48 @@ func (p postgresUserRepository) Users() ([]*domain.User, error) {
 			&user.CreatedAt,
 		)
 		if err != nil {
-			log.Fatal(err)
+			logrus.Error(err)
 		}
-		log.Println(users)
+		logrus.Error(err)
 		users = append(users, user)
 	}
 
 	err = rows.Err()
 	if err != nil {
-		log.Fatal(err)
+		logrus.Error(err)
 	}
 
 	return users, nil
 }
 
 func (p postgresUserRepository) CreateUser(u *domain.User) (int64, map[string]string) {
-	//query := `INSERT  users (username, password ) VALUES (?, ?)`
 	query := `INSERT users SET username=? , password=? , updated_at=? , created_at=?`
-	//query := `INSERT INTO users (username, password, updated_at, created_at) VALUES`
 	stmt, err := p.db.Prepare(query)
 	if err != nil {
-		log.Fatal(err.Error())
+		logrus.Error(err)
 	}
 	defer stmt.Close()
 
 	res, err := stmt.Exec(u.Username, u.Password, u.UpdatedAt, u.CreatedAt)
-	fmt.Println(res)
 
 	id, _ := res.LastInsertId()
 
-	var error map[string]string
+	var errors map[string]string // Change this
 
-	return id, error
+	return id, errors
 }
 
-func (p postgresUserRepository) DeleteUser(id uint64) error {
-	panic("implement me")
+func (p postgresUserRepository) DeleteUser(id int64) error {
+	query := `DELETE FROM users WHERE id = ?`
+	stmt, err := p.db.Prepare(query)
+	if err != nil {
+		logrus.Error(err)
+	}
+
+	_, err = stmt.Exec(id)
+	if err != nil {
+		logrus.Error(err)
+	}
+
+	return err
 }

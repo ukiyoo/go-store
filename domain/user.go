@@ -21,8 +21,8 @@ type User struct {
 }
 
 type UserRepository interface {
-	User(id uint64) (*User, error)
+	User(id int64) (*User, error)
 	Users() ([] *User, error)
 	CreateUser(user *User) (int64, map[string]string)
-	DeleteUser(id uint64) error
+	DeleteUser(id int64) error
 }

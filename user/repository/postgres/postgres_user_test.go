@@ -1,7 +1,6 @@
 package postgres_test
 
 import (
-	"fmt"
 	"github.com/stretchr/testify/assert"
 	"go-store/domain"
 	"go-store/user/repository/postgres"
@@ -14,7 +13,7 @@ func TestUser(t *testing.T) {
 	db, mock, err := sqlmock.New()
 
 	if err != nil {
-		t.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		t.Fatalf("An error occurred '%s' connecting to sqlmock", err)
 	}
 	defer db.Close()
 
@@ -24,10 +23,10 @@ func TestUser(t *testing.T) {
 	query := "SELECT id, username, password, updated_at, created_at FROM users WHERE ID = \\?"
 
 	mock.ExpectQuery(query).WillReturnRows(rows)
-	a := postgres.NewPostgresUserRepository(db)
+	p := postgres.NewPostgresUserRepository(db)
 
-	num := uint64(1)
-	user, err := a.User(num)
+	num := int64(1)
+	user, err := p.User(num)
 	assert.NoError(t, err)
 	assert.NotNil(t, user)
 }
@@ -36,7 +35,7 @@ func TestUsers(t *testing.T) {
 	db, mock, err := sqlmock.New()
 
 	if err != nil {
-		t.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		t.Fatalf("An error occurred '%s' connecting to sqlmock", err)
 	}
 	defer db.Close()
 
@@ -48,9 +47,9 @@ func TestUsers(t *testing.T) {
 	query := "SELECT id, username, password, updated_at, created_at FROM users"
 
 	mock.ExpectQuery(query).WillReturnRows(rows)
-	a := postgres.NewPostgresUserRepository(db)
+	p := postgres.NewPostgresUserRepository(db)
 
-	users, err := a.Users()
+	users, err := p.Users()
 	assert.NoError(t, err)
 	assert.NotNil(t, users)
 }
@@ -65,22 +64,40 @@ func TestCreateUser(t *testing.T) {
 
 	db, mock, err := sqlmock.New()
 	if err != nil {
-		t.Fatal("Error create")
+		t.Fatalf("An error occurred '%s' connecting to sqlmock", err)
 	}
 	defer db.Close()
 
-	//query := "INSERT INTO users (username, password) VALUES (\\?, \\?)"
-	//query := "INSERT users SET username=\\? , password=\\?"
 	query := "INSERT users SET username=\\? , password=\\? , updated_at=\\? , created_at=\\?"
 
-	prep := mock.ExpectPrepare(query)
-	prep.ExpectExec().
+	prepare := mock.ExpectPrepare(query)
+	prepare.ExpectExec().
 		WithArgs(u.Username, u.Password, u.UpdatedAt, u.CreatedAt).
-		WillReturnResult(sqlmock.NewResult(12, 1))
+		WillReturnResult(sqlmock.NewResult(7, 1))
 
-	a := postgres.NewPostgresUserRepository(db)
+	p := postgres.NewPostgresUserRepository(db)
 
-	id, _ := a.CreateUser(u)
-	fmt.Println(id)
-	assert.Equal(t, int64(12), id)
+	id, _ := p.CreateUser(u)
+	assert.Equal(t, int64(7), id)
+}
+
+func TestDeleteUser(t *testing.T)  {
+	db, mock, err := sqlmock.New()
+	if err != nil {
+		t.Fatalf("An error occurred '%s' connecting to sqlmock", err)
+	}
+	defer db.Close()
+
+	query := "DELETE FROM users WHERE id = \\?"
+
+	prepare := mock.ExpectPrepare(query)
+	prepare.ExpectExec().
+		WithArgs(7).
+		WillReturnResult(sqlmock.NewResult(7, 1))
+
+	p := postgres.NewPostgresUserRepository(db)
+
+	err = p.DeleteUser(7)
+	assert.NoError(t, err)
+
 }
