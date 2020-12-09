@@ -20,9 +20,9 @@ type User struct {
 	CreatedAt time.Time
 }
 
-type UserRepository interface {
-	User(id int64) (*User, error)
-	Users() ([] *User, error)
-	CreateUser(user *User) (int64, map[string]string)
-	DeleteUser(id int64) error
+func (u *User) Validate() (err error)  {
+	if u.Username != " " && u.Password != " " {
+		return err
+	}
+	return nil
 }

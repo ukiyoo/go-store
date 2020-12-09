@@ -4,13 +4,14 @@ import (
 	"database/sql"
 	"github.com/sirupsen/logrus"
 	"go-store/domain"
+	"go-store/repository"
 )
 
 type postgresUserRepository struct {
 	db *sql.DB
 }
 
-func NewPostgresUserRepository(db *sql.DB) domain.UserRepository {
+func NewPostgresUserRepository(db *sql.DB) repository.UserRepository {
 	return &postgresUserRepository{db}
 }
 

@@ -3,7 +3,7 @@ package postgres_test
 import (
 	"github.com/stretchr/testify/assert"
 	"go-store/domain"
-	"go-store/user/repository/postgres"
+	"go-store/repository/postgres"
 	sqlmock "gopkg.in/DATA-DOG/go-sqlmock.v1"
 	"testing"
 	"time"
@@ -81,7 +81,7 @@ func TestCreateUser(t *testing.T) {
 	assert.Equal(t, int64(7), id)
 }
 
-func TestDeleteUser(t *testing.T)  {
+func TestDeleteUser(t *testing.T) {
 	db, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("An error occurred '%s' connecting to sqlmock", err)
