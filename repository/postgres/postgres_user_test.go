@@ -1,12 +1,13 @@
 package postgres_test
 
 import (
-	"github.com/stretchr/testify/assert"
 	"go-store/domain"
 	"go-store/repository/postgres"
-	sqlmock "gopkg.in/DATA-DOG/go-sqlmock.v1"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
+	sqlmock "gopkg.in/DATA-DOG/go-sqlmock.v1"
 )
 
 func TestUser(t *testing.T) {

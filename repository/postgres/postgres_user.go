@@ -2,9 +2,10 @@ package postgres
 
 import (
 	"database/sql"
-	"github.com/sirupsen/logrus"
 	"go-store/domain"
 	"go-store/repository"
+
+	"github.com/sirupsen/logrus"
 )
 
 type postgresUserRepository struct {
@@ -79,7 +80,7 @@ func (p postgresUserRepository) Users() ([]*domain.User, error) {
 	return users, nil
 }
 
-func (p postgresUserRepository) CreateUser(u *domain.User) (int64, map[string]string) {
+func (p postgresUserRepository) CreateUser(u *domain.User) (int64, error) {
 	query := `INSERT users SET username=? , password=? , updated_at=? , created_at=?`
 	stmt, err := p.db.Prepare(query)
 	if err != nil {
@@ -89,11 +90,9 @@ func (p postgresUserRepository) CreateUser(u *domain.User) (int64, map[string]st
 
 	res, err := stmt.Exec(u.Username, u.Password, u.UpdatedAt, u.CreatedAt)
 
-	id, _ := res.LastInsertId()
+	id, err := res.LastInsertId()
 
-	var errors map[string]string // Change this
-
-	return id, errors
+	return id, err
 }
 
 func (p postgresUserRepository) DeleteUser(id int64) error {
