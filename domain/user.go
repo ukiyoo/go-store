@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"errors"
 	"strings"
 	"time"
 
@@ -16,7 +17,7 @@ CREATE TABLE user (
 );`
 
 type User struct {
-	ID        uint64
+	ID        int64
 	Username  string
 	Password  string
 	UpdatedAt time.Time
@@ -40,9 +41,9 @@ func NewUser(username, password string) (*User, error) {
 	return user, nil
 }
 
-func (u *User) Validate() (err error) {
-	if u.Username != " " && u.Password != " " {
-		return err
+func (u *User) Validate() error {
+	if u.Username == " " || u.Password == " " {
+		return errors.New("Invalid username")
 	}
 	return nil
 }
